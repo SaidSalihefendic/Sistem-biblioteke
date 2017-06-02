@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1496431459 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\dokument.cpp
+	"dokument.h"
+
+1496429978 c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\dokument.h
+	<iostream>
+	<string>
+	"datum.h"
+
+1496431562 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\main.cpp
+	"dokument.h"
+	"knjiga.h"
+	"datum.h"
+
+1496424645 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\datum.cpp
+	"datum.h"
+
+1496422732 c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\datum.h
+	<iostream>
+	<string>
+
+1496431457 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\knjiga.cpp
+	"knjiga.h"
+	<iostream>
+	<limits>
+
+1496429101 c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\knjiga.h
+	"dokument.h"
+
