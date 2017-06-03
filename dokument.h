@@ -18,14 +18,16 @@ public:
     Dokument(string naziv, string kategorija, string* autori, int brojAutora,
                      string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
                      int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja);
+        //copy constructor
+    Dokument(const Dokument& d);
 
-        //destruktor, koji ce biti zasluzan za ponistavanje citave knjige, eksplicitan poziv u arhivi
-    ~Dokument();
+        //destruktor, koji ce biti zasluzan za ponistavanje citave knjige, eksplicitan poziv u arhivi, virtualna zbog rada sa pokazivacima i bacanje dokumenata u smece
+    virtual ~Dokument();
+
 
         //getteri
     string vratiNaziv() const;
     string vratiKategoriju() const;
-    string vratiZanr() const;
     string* vratiAutore() const;    //najvjerovatnije da treba proslijediti parametar neki niz, tako da ne dodje se do konflikta pokazivaca koji pokazuju na istu mem. lokaciju
     int vratiBrojAutora() const;
     string vratiMjestoIzdanja() const;
@@ -38,6 +40,9 @@ public:
         //konzolni ispis
     virtual void ispis() const; //  bitno je da bude virtuelna zbog kasnije niza dokumenata sto cemo imati
     virtual void unosPodataka();
+
+    Dokument& operator=(const Dokument& d);
+
 protected:
         //odnosit ce se na sve dokumente, neovisno da li je u pitanju knjiga, enciklopedija...
     static int jedinstveniBarkod;
@@ -63,33 +68,6 @@ protected:
         //na kojim pismima su pisani dokumenti
     string* dostupnaPisma;
     int brojPisama;
-};
-
-
-    //knjige, enciklopedije, manuskripti, ... Ustvari, svaki papirni format je, u sustini, neka vrsta knjige
-
-
-
-class Fajl : public Dokument
-{
-public:
-    Fajl();
-    Fajl(string naziv, string kategorija, string* autori, int brojAutora,
-                         string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
-                         int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja,
-                         double velicina, string tip, string verzija);
-
-    double vratiVelicinu() const;
-    string vratiTip() const;
-    string vratiVerziju() const;
-
-    void ispis() const;
-    void unosPodataka();
-
-protected:
-    double velicina; //velicina fajla
-    string tip;
-    string verzija;
 };
 
 #endif // DOKUMENT_H

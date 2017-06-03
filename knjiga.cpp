@@ -4,44 +4,16 @@
 using namespace std;
 ///----------------------------------------------------------------------------------------------------------------------
 
-///*Knjiga();
-//    Knjiga(string naziv, string kategorija, string* autori, int brojAutora,
-//                         string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
-//                         int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja,
-//                         string* recenzenti, int brojRecenzenata, int brojStranica, int brojIzdanja,
-//                         string izdavac, string stampa);
-//
-//        //getteri
-//    int vratiBrojStranica() const;
-//    int vratiBrojIzdanja() const;
-//    int vratiBrojRecenzenata() const;
-//    string* vratiRecenzente() const;
-//    string vratiIzdavaca() const;
-//    string vratiStampu() const;
-//
-//
-//    void ispis() const;
-//    void unosPodataka();*/
-Knjiga::Knjiga() : Dokument()
-{
-    brojRecenzenata = 0;
-}
+Knjiga::Knjiga() : Dokument() {}
 
+///----------------------------------------------------------------------------------------------------------------------
 
 Knjiga::Knjiga(string naziv, string kategorija, string* autori, int brojAutora,
                          string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
                          int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja,
-                         string* recenzenti, int brojRecenzenata, int brojStranica, int brojIzdanja,
-                         string izdavac, string stampa) : Dokument(naziv, kategorija, autori, brojAutora, mjestoIzdanja, brojPrimjeraka, dostupniJezici, brojJezika, dostupnaPisma,
-                                                                                          brojPisama, godinaIzdanja)
+                         int brojStranica, int brojIzdanja, string izdavac, string stampa) : Dokument(naziv, kategorija, autori, brojAutora, mjestoIzdanja, brojPrimjeraka, dostupniJezici, brojJezika, dostupnaPisma,
+                                                                                                                                           brojPisama, godinaIzdanja)
 {
-    this->brojRecenzenata = brojRecenzenata;
-    this->recenzenti = new string[brojRecenzenata];
-    for(int i = 0; i < brojRecenzenata; i++)
-    {
-        this->recenzenti[i] = recenzenti[i];
-    }
-
     this->brojStranica = brojStranica;
     this->brojIzdanja = brojIzdanja;
     this->izdavac = izdavac;
@@ -50,6 +22,15 @@ Knjiga::Knjiga(string naziv, string kategorija, string* autori, int brojAutora,
 
 ///----------------------------------------------------------------------------------------------------------------------
 
+Knjiga::Knjiga(const Knjiga& k) : Dokument(k)
+{
+    brojStranica = k.brojStranica;
+    brojIzdanja = k.brojIzdanja;
+    izdavac = k.izdavac;
+    stampa = k.stampa;
+}
+
+///----------------------------------------------------------------------------------------------------------------------
 
     //getteri
 
@@ -61,16 +42,6 @@ int Knjiga::vratiBrojStranica() const
 int Knjiga::vratiBrojIzdanja() const
 {
     return brojIzdanja;
-}
-
-int Knjiga::vratiBrojRecenzenata() const
-{
-    return brojRecenzenata;
-}
-
-string* Knjiga::vratiRecenzente() const
-{
-    return recenzenti;
 }
 
 string Knjiga::vratiIzdavaca() const
@@ -98,56 +69,15 @@ void Knjiga::ispis() const
 
     cout << "Stampa: " << stampa << endl;
 
-    cout << "Recenzenti: ";
-    for(int i = 0; i < brojRecenzenata; i++)
-    {
-        cout << recenzenti[i];
-
-        if(i != brojRecenzenata - 1)
-        {
-            cout << ", ";
-        }
-    } //end for
-    cout << endl;
 }
 
+///----------------------------------------------------------------------------------------------------------------------
 
 void Knjiga::unosPodataka()
 {
     Dokument::unosPodataka();
 
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-    cout << "Recenzenti(enter prazno za prekid): ";
-
-    string recenzent;
-    while(true)
-    {
-        getline(cin, recenzent);
-
-        if(recenzent != "")
-        {
-            if(brojRecenzenata == 0)
-            {
-                recenzenti = new string[brojRecenzenata + 1];
-                recenzenti[brojRecenzenata] = recenzent;
-                brojRecenzenata++;
-            }
-            else
-            {
-                string* pomocniNiz = new string[brojRecenzenata + 1];
-                for(int i = 0; i < brojRecenzenata; i++)
-                    pomocniNiz[i] = recenzenti[i];
-
-                delete[] recenzenti;
-                recenzenti = pomocniNiz;
-                recenzenti[brojRecenzenata] = recenzent;
-                brojRecenzenata++;
-            }//end if-else unutra
-        }//end if
-
-        else break; //prekida se petlja kada unese prazan string
-    } //end while
 
     cout << "Izdavac: ";
     getline(cin, izdavac);
@@ -160,4 +90,19 @@ void Knjiga::unosPodataka()
 
     cout << "Broj stranica: ";
     cin >> brojStranica;
+}
+
+
+///----------------------------------------------------------------------------------------------------------------------
+Knjiga& Knjiga::operator=(const Knjiga& k)
+{
+    if(this == &k) return *this;
+
+    Dokument::operator=(k);
+    brojStranica = k.brojStranica;
+    brojIzdanja = k.brojIzdanja;
+    izdavac = k.izdavac;
+    stampa = k.stampa;
+
+    return *this;
 }

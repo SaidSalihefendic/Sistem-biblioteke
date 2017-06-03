@@ -1,15 +1,16 @@
 # depslib dependency file v1.0
-1496431459 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\dokument.cpp
+1496485392 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\dokument.cpp
 	"dokument.h"
 
-1496429978 c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\dokument.h
+1496485371 c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\dokument.h
 	<iostream>
 	<string>
 	"datum.h"
 
-1496431562 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\main.cpp
+1496484350 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\main.cpp
 	"dokument.h"
 	"knjiga.h"
+	"fajl.h"
 	"datum.h"
 
 1496424645 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\datum.cpp
@@ -19,11 +20,18 @@
 	<iostream>
 	<string>
 
-1496431457 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\knjiga.cpp
+1496482500 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\knjiga.cpp
 	"knjiga.h"
 	<iostream>
 	<limits>
 
-1496429101 c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\knjiga.h
+1496485036 c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\knjiga.h
+	"dokument.h"
+
+1496484178 source:c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\fajl.cpp
+	"fajl.h"
+	<limits>
+
+1496484149 c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\fajl.h
 	"dokument.h"
 
