@@ -36,7 +36,13 @@
 		<Unit filename="datum.h" />
 		<Unit filename="dokument.cpp" />
 		<Unit filename="dokument.h" />
+		<Unit filename="fajl.cpp" />
+		<Unit filename="fajl.h" />
+		<Unit filename="knjiga.cpp" />
+		<Unit filename="knjiga.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="naucnirad.cpp" />
+		<Unit filename="naucnirad.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
