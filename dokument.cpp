@@ -15,40 +15,94 @@ Dokument::Dokument() : brojAutora(0), brojJezika(0), brojPisama(0)
 Dokument::Dokument(string naziv, string kategorija, string* autori, int brojAutora,
                                     string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
                                     int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja)
-    {
-        this->naziv = naziv;
-        this->kategorija = kategorija;
+{
+    this->naziv = naziv;
+    this->kategorija = kategorija;
 
-            //ovdje se radi o dinamickom nizu, tj. pokazivacu na niz zbog uzimanja podataka iz fajlova
-        this->brojAutora = brojAutora;
-        this->autori = new string[brojAutora];
+        //ovdje se radi o dinamickom nizu, tj. pokazivacu na niz zbog uzimanja podataka iz fajlova
+    this->brojAutora = brojAutora;
+    this->autori = new string[brojAutora];
+    for(int i = 0; i < brojAutora; i++)
+    {
+        this->autori[i] = autori[i];
+    }
+
+    this->mjestoIzdanja = mjestoIzdanja;
+    this->brojPrimjeraka = brojPrimjeraka;
+
+        //ovdje se radi o dinamickom nizu, tj. pokazivacu na niz zbog uzimanja podataka iz fajlova
+    this->brojJezika = brojJezika;
+    this->dostupniJezici = new string[brojJezika];
+    for(int i = 0; i < brojJezika; i++)
+    {
+        this->dostupniJezici[i] = dostupniJezici[i];
+    }
+
+        //ovdje se radi o dinamickom nizu, tj. pokazivacu na niz zbog uzimanja podataka iz fajlova
+    this->brojPisama = brojPisama;
+    this->dostupnaPisma = new string[brojPisama];
+    for(int i = 0; i < brojPisama; i++)
+    {
+        this->dostupnaPisma[i] = dostupnaPisma[i];
+    }
+
+    this->barkod = jedinstveniBarkod++;
+    this->godinaIzdanja = godinaIzdanja;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+Dokument::Dokument(const Dokument& d)
+{
+    /*string naziv, string kategorija, string* autori, int brojAutora,
+                                    string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
+                                    int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja*/
+    naziv = d.naziv;
+    kategorija = d.kategorija;
+    brojAutora = d.brojAutora;
+
+    if(brojAutora > 0)
+    {
+        autori = new string[brojAutora];
+
         for(int i = 0; i < brojAutora; i++)
         {
-            this->autori[i] = autori[i];
+            autori[i] = d.autori[i];
         }
+    }
 
-        this->mjestoIzdanja = mjestoIzdanja;
-        this->brojPrimjeraka = brojPrimjeraka;
 
-            //ovdje se radi o dinamickom nizu, tj. pokazivacu na niz zbog uzimanja podataka iz fajlova
-        this->brojJezika = brojJezika;
-        this->dostupniJezici = new string[brojJezika];
+    mjestoIzdanja = d.mjestoIzdanja;
+    brojPrimjeraka = d.brojPrimjeraka;
+
+    brojJezika = d.brojJezika;
+
+    if(brojJezika > 0)
+    {
+        dostupniJezici = new string[brojJezika];
+
         for(int i = 0; i < brojJezika; i++)
         {
-            this->dostupniJezici[i] = dostupniJezici[i];
+            dostupniJezici[i] = d.dostupniJezici[i];
         }
+    }
 
-            //ovdje se radi o dinamickom nizu, tj. pokazivacu na niz zbog uzimanja podataka iz fajlova
-        this->brojPisama = brojPisama;
-        this->dostupnaPisma = new string[brojPisama];
+
+    brojPisama = d.brojPisama;
+
+    if(brojPisama > 0)
+    {
+        dostupnaPisma = new string[brojPisama];
+
         for(int i = 0; i < brojPisama; i++)
         {
-            this->dostupnaPisma[i] = dostupnaPisma[i];
+            dostupnaPisma[i] = d.dostupnaPisma[i];
         }
-
-        this->barkod = jedinstveniBarkod++;
-        this->godinaIzdanja = godinaIzdanja;
     }
+
+    godinaIzdanja = d.godinaIzdanja;
+    barkod = jedinstveniBarkod++;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -74,10 +128,6 @@ Dokument::~Dokument()
 string Dokument::vratiKategoriju() const
 {
     return this->kategorija;
-}
-string Dokument::vratiZanr() const
-{
-    return this->zanr;
 }
 string* Dokument::vratiAutore() const
 {
@@ -121,39 +171,51 @@ void Dokument::ispis() const
     cout << "Naziv: " << naziv << endl;
     cout << "Kategorija: " << kategorija << endl;
 
-        //ispis autora dokumenta
-    cout << "Autori: ";
-    for(int i = 0; i < brojAutora; i++)
+        //ispis autora dokumenta, ako ima
+    if(brojAutora > 0)
     {
-        cout << autori[i];
-        if(i != brojAutora - 1)
-            cout << ", ";
+        cout << "Autori: ";
+        for(int i = 0; i < brojAutora; i++)
+        {
+            cout << autori[i];
+            if(i != brojAutora - 1)
+                cout << ", ";
+        }
+        cout << endl;
     }
-    cout << endl;
 
     cout << "Mjesto izdanja: " << mjestoIzdanja << endl;
 
-        //ispis dostupnih jezika
-    cout << "Jezici: ";
-    for(int i = 0; i < brojJezika; i++)
+        //ispis dostupnih jezika, ako ima
+    if(brojJezika > 0)
     {
-        cout << dostupniJezici[i];
-        if(i != brojJezika - 1)
-            cout << ", ";
-    }
-    cout << endl;
-
-        //ispis dostupnih pisama
-    cout << "Pisma: ";
-    for(int i = 0; i < brojPisama; i++)
-    {
-        cout << dostupnaPisma[i];
-        if(i != brojPisama - 1)
+        cout << "Jezici: ";
+        for(int i = 0; i < brojJezika; i++)
         {
-            cout << ", ";
+            cout << dostupniJezici[i];
+            if(i != brojJezika - 1)
+            {
+                cout << ", ";
+            }
         }
+        cout << endl;
     }
-    cout << endl;
+
+
+        //ispis dostupnih pisamam, ako ih ima
+    if(brojPisama > 0)
+    {
+        cout << "Pisma: ";
+        for(int i = 0; i < brojPisama; i++)
+        {
+            cout << dostupnaPisma[i];
+            if(i != brojPisama - 1)
+            {
+                cout << ", ";
+            }
+        }
+        cout << endl;
+    }
 
     cout << "Godina izdanja: " << godinaIzdanja << "." << endl;
 
@@ -167,7 +229,6 @@ void Dokument::unosPodataka()
    /* string naziv, string kategorija, string zanr, string* autori, int brojAutora,
                                     string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
                                     int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja*/
-    char pom;
     cout << "Naziv: ";
     getline(cin, naziv); //hvatamo citav string
 
@@ -279,4 +340,66 @@ void Dokument::unosPodataka()
 }//end input funkcije
 
 //--------------------------------------------------------------------------------------------------
+
+Dokument& Dokument::operator=(const Dokument& d)
+{
+    if(this == &d) return *this;
+
+        //brisemo sada nizove
+    if(brojAutora != 0)
+        delete[] autori;
+    if(brojPisama != 0)
+        delete[] dostupnaPisma;
+
+    if(brojJezika != 0)
+        delete[] dostupniJezici;
+
+    naziv = d.naziv;
+    kategorija = d.kategorija;
+    brojAutora = d.brojAutora;
+
+    if(brojAutora > 0)
+    {
+        autori = new string[brojAutora];
+
+        for(int i = 0; i < brojAutora; i++)
+        {
+            autori[i] = d.autori[i];
+        }
+    }
+
+
+    mjestoIzdanja = d.mjestoIzdanja;
+    brojPrimjeraka = d.brojPrimjeraka;
+
+    brojJezika = d.brojJezika;
+
+    if(brojJezika > 0)
+    {
+        dostupniJezici = new string[brojJezika];
+
+        for(int i = 0; i < brojJezika; i++)
+        {
+            dostupniJezici[i] = d.dostupniJezici[i];
+        }
+    }
+
+
+    brojPisama = d.brojPisama;
+
+    if(brojPisama > 0)
+    {
+        dostupnaPisma = new string[brojPisama];
+
+        for(int i = 0; i < brojPisama; i++)
+        {
+            dostupnaPisma[i] = d.dostupnaPisma[i];
+        }
+    }
+
+    godinaIzdanja = d.godinaIzdanja;
+
+
+    return *this;
+}
 //--------------------------------------------------------------------------------------------------

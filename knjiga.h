@@ -3,6 +3,7 @@
 
 #include "dokument.h"
 
+    ///Nasljedjuje ga naucni rad, udzbenik, roman i enciklopedija (uradjeno: Naucni rad)
 class Knjiga : public Dokument
 {
 public:
@@ -10,29 +11,27 @@ public:
     Knjiga(string naziv, string kategorija, string* autori, int brojAutora,
                          string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
                          int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja,
-                         string* recenzenti, int brojRecenzenata, int brojStranica, int brojIzdanja,
+                         int brojStranica, int brojIzdanja,
                          string izdavac, string stampa);
+
+    Knjiga(const Knjiga& k);
 
         //getteri
     int vratiBrojStranica() const;
     int vratiBrojIzdanja() const;
-    int vratiBrojRecenzenata() const;
-    string* vratiRecenzente() const;
     string vratiIzdavaca() const;
     string vratiStampu() const;
 
 
-    void ispis() const;
-    void unosPodataka();
+    virtual void ispis() const;
+    virtual void unosPodataka();
+
+    Knjiga& operator=(const Knjiga& k);
+
 
 protected:
     int brojStranica;
     int brojIzdanja;
-
-        //niz jer moze dokument imati vise recenzenata
-    string* recenzenti;
-    int brojRecenzenata;
-
     string izdavac;
     string stampa;
 };
