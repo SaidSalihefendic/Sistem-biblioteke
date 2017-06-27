@@ -35,3 +35,62 @@
 1496484149 c:\users\said\desktop\c++\projekat sistem biblioteke\ssa sistem\fajl.h
 	"dokument.h"
 
+1496486586 source:c:\users\said\desktop\sistem-biblioteke\datum.cpp
+	"datum.h"
+
+1496486586 c:\users\said\desktop\sistem-biblioteke\datum.h
+	<iostream>
+	<string>
+
+1498435900 source:c:\users\said\desktop\sistem-biblioteke\dokument.cpp
+	"dokument.h"
+	<limits>
+
+1498435331 c:\users\said\desktop\sistem-biblioteke\dokument.h
+	<iostream>
+	<string>
+	"datum.h"
+
+1498385981 source:c:\users\said\desktop\sistem-biblioteke\fajl.cpp
+	"fajl.h"
+	<limits>
+
+1498385675 c:\users\said\desktop\sistem-biblioteke\fajl.h
+	"dokument.h"
+
+1498386049 source:c:\users\said\desktop\sistem-biblioteke\knjiga.cpp
+	"knjiga.h"
+	<iostream>
+	<limits>
+
+1498386005 c:\users\said\desktop\sistem-biblioteke\knjiga.h
+	"dokument.h"
+
+1498585925 source:c:\users\said\desktop\sistem-biblioteke\main.cpp
+	"polica.h"
+	"korisnik.h"
+
+1498386473 source:c:\users\said\desktop\sistem-biblioteke\naucnirad.cpp
+	"naucnirad.h"
+	<limits>
+
+1498386084 c:\users\said\desktop\sistem-biblioteke\naucnirad.h
+	"knjiga.h"
+
+1498436625 source:c:\users\said\desktop\sistem-biblioteke\polica.cpp
+	"polica.h"
+
+1498436858 c:\users\said\desktop\sistem-biblioteke\polica.h
+	<string>
+	"dokument.h"
+	"knjiga.h"
+	"fajl.h"
+	"naucnirad.h"
+
+1498585950 source:c:\users\said\desktop\sistem-biblioteke\korisnik.cpp
+	"korisnik.h"
+
+1498585736 c:\users\said\desktop\sistem-biblioteke\korisnik.h
+	<string>
+	"polica.h"
+

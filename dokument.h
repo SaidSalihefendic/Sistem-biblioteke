@@ -16,8 +16,8 @@ public:
     Dokument();
         //konstruktor za inicijalizaciju osnovnih informacija jednog tipa dokumenta
     Dokument(string naziv, string kategorija, string* autori, int brojAutora,
-                     string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
-                     int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja);
+                     string mjestoIzdanja, string* dostupniJezici,
+                     int brojJezika, int godinaIzdanja);
         //copy constructor
     Dokument(const Dokument& d);
 
@@ -25,7 +25,7 @@ public:
     virtual ~Dokument();
 
 
-        //getteri
+        //getteri (Zbog GUI je prvenstveno dodano)
     string vratiNaziv() const;
     string vratiKategoriju() const;
     string* vratiAutore() const;    //najvjerovatnije da treba proslijediti parametar neki niz, tako da ne dodje se do konflikta pokazivaca koji pokazuju na istu mem. lokaciju
@@ -34,8 +34,6 @@ public:
     int vratiBrojPrimjeraka() const;
     string* vratiDostupneJezike() const;    //najvjerovatnije da treba proslijediti parametar neki niz, tako da ne dodje se do konflikta pokazivaca koji pokazuju na istu mem. lokaciju
     int vratiBrojJezika() const;
-    string* vratiDostupnaPisma() const;    //najvjerovatnije da treba proslijediti parametar neki niz, tako da ne dodje se do konflikta pokazivaca koji pokazuju na istu mem. lokaciju
-    int vratiBrojPisama() const;
 
         //konzolni ispis
     virtual void ispis() const; //  bitno je da bude virtuelna zbog kasnije niza dokumenata sto cemo imati
@@ -64,10 +62,6 @@ protected:
         //na kojim jezicima je taj dokument dostupan
     string* dostupniJezici;
     int brojJezika;
-
-        //na kojim pismima su pisani dokumenti
-    string* dostupnaPisma;
-    int brojPisama;
 };
 
 #endif // DOKUMENT_H

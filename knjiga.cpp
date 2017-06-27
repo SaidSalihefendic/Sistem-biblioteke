@@ -9,10 +9,9 @@ Knjiga::Knjiga() : Dokument() {}
 ///----------------------------------------------------------------------------------------------------------------------
 
 Knjiga::Knjiga(string naziv, string kategorija, string* autori, int brojAutora,
-                         string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
-                         int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja,
-                         int brojStranica, int brojIzdanja, string izdavac, string stampa) : Dokument(naziv, kategorija, autori, brojAutora, mjestoIzdanja, brojPrimjeraka, dostupniJezici, brojJezika, dostupnaPisma,
-                                                                                                                                           brojPisama, godinaIzdanja)
+                         string mjestoIzdanja, string* dostupniJezici,
+                         int brojJezika, int godinaIzdanja,
+                         int brojStranica, int brojIzdanja, string izdavac, string stampa) : Dokument(naziv, kategorija, autori, brojAutora, mjestoIzdanja, dostupniJezici, brojJezika, godinaIzdanja)
 {
     this->brojStranica = brojStranica;
     this->brojIzdanja = brojIzdanja;

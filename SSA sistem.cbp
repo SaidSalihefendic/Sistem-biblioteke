@@ -40,9 +40,13 @@
 		<Unit filename="fajl.h" />
 		<Unit filename="knjiga.cpp" />
 		<Unit filename="knjiga.h" />
+		<Unit filename="korisnik.cpp" />
+		<Unit filename="korisnik.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="naucnirad.cpp" />
 		<Unit filename="naucnirad.h" />
+		<Unit filename="polica.cpp" />
+		<Unit filename="polica.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

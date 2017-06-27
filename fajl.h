@@ -10,7 +10,7 @@ public:
     Fajl();
     Fajl(string naziv, string kategorija, string* autori, int brojAutora,
                          string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
-                         int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja,
+                         int brojJezika, int godinaIzdanja,
                          double velicina, string tip, string verzija);
     Fajl(const Fajl& f);
 

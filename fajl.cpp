@@ -10,9 +10,8 @@ Fajl::Fajl() : Dokument() {}
 
 Fajl::Fajl(string naziv, string kategorija, string* autori, int brojAutora,
                          string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
-                         int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja,
-                         double velicina, string tip, string verzija) : Dokument(naziv, kategorija, autori, brojAutora, mjestoIzdanja, brojPrimjeraka, dostupniJezici, brojJezika, dostupnaPisma,
-                                                                                                        brojPisama, godinaIzdanja)
+                         int brojJezika, int godinaIzdanja,
+                         double velicina, string tip, string verzija) : Dokument(naziv, kategorija, autori, brojAutora, mjestoIzdanja, dostupniJezici, brojJezika, godinaIzdanja)
 {
     this->velicina = velicina;
     this->tip = tip;

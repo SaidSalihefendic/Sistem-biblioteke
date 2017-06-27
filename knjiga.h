@@ -9,8 +9,8 @@ class Knjiga : public Dokument
 public:
     Knjiga();
     Knjiga(string naziv, string kategorija, string* autori, int brojAutora,
-                         string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
-                         int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja,
+                         string mjestoIzdanja, string* dostupniJezici,
+                         int brojJezika, int godinaIzdanja,
                          int brojStranica, int brojIzdanja,
                          string izdavac, string stampa);
 

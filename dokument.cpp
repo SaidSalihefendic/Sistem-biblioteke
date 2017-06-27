@@ -1,10 +1,10 @@
 #include "dokument.h"
-
+#include <limits>
 int Dokument::jedinstveniBarkod = 0;
 
 
     //defaultni konstruktor ce nam posluziti da samo napravimo objekt, zavisit ce od inputa (ovo su za konzolne svrhe)
-Dokument::Dokument() : brojAutora(0), brojJezika(0), brojPisama(0)
+Dokument::Dokument() : brojAutora(0), brojJezika(0)
 {
     barkod = jedinstveniBarkod++;
 }
@@ -13,8 +13,8 @@ Dokument::Dokument() : brojAutora(0), brojJezika(0), brojPisama(0)
 
 //  konstruktor koji konstruise osnovne informacije svakog dokumenta, nebitno da li je pitanje o knjizi, enciklopediji, eknjizi i slicno (GUI svrha)
 Dokument::Dokument(string naziv, string kategorija, string* autori, int brojAutora,
-                                    string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
-                                    int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja)
+                                    string mjestoIzdanja, string* dostupniJezici,
+                                    int brojJezika, int godinaIzdanja)
 {
     this->naziv = naziv;
     this->kategorija = kategorija;
@@ -39,12 +39,6 @@ Dokument::Dokument(string naziv, string kategorija, string* autori, int brojAuto
     }
 
         //ovdje se radi o dinamickom nizu, tj. pokazivacu na niz zbog uzimanja podataka iz fajlova
-    this->brojPisama = brojPisama;
-    this->dostupnaPisma = new string[brojPisama];
-    for(int i = 0; i < brojPisama; i++)
-    {
-        this->dostupnaPisma[i] = dostupnaPisma[i];
-    }
 
     this->barkod = jedinstveniBarkod++;
     this->godinaIzdanja = godinaIzdanja;
@@ -87,19 +81,6 @@ Dokument::Dokument(const Dokument& d)
         }
     }
 
-
-    brojPisama = d.brojPisama;
-
-    if(brojPisama > 0)
-    {
-        dostupnaPisma = new string[brojPisama];
-
-        for(int i = 0; i < brojPisama; i++)
-        {
-            dostupnaPisma[i] = d.dostupnaPisma[i];
-        }
-    }
-
     godinaIzdanja = d.godinaIzdanja;
     barkod = jedinstveniBarkod++;
 }
@@ -109,10 +90,10 @@ Dokument::Dokument(const Dokument& d)
     //destruktor
 Dokument::~Dokument()
 {
+//    cout << "Dokument destruktor pozvan" << endl;
+
     if(brojAutora != 0)
         delete[] autori;
-    if(brojPisama != 0)
-        delete[] dostupnaPisma;
 
     if(brojJezika != 0)
         delete[] dostupniJezici;
@@ -152,14 +133,6 @@ string* Dokument::vratiDostupneJezike() const
 int Dokument::vratiBrojJezika() const
 {
     return this->brojJezika;
-}
-string* Dokument::vratiDostupnaPisma() const
-{
-    return this->dostupnaPisma;
-}    //najvjerovatnije da treba proslijediti parametar neki niz, tako da ne dodje se do konflikta pokazivaca koji pokazuju na istu mem. lokaciju
-int Dokument::vratiBrojPisama() const
-{
-    return this->brojPisama;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -201,22 +174,6 @@ void Dokument::ispis() const
         cout << endl;
     }
 
-
-        //ispis dostupnih pisamam, ako ih ima
-    if(brojPisama > 0)
-    {
-        cout << "Pisma: ";
-        for(int i = 0; i < brojPisama; i++)
-        {
-            cout << dostupnaPisma[i];
-            if(i != brojPisama - 1)
-            {
-                cout << ", ";
-            }
-        }
-        cout << endl;
-    }
-
     cout << "Godina izdanja: " << godinaIzdanja << "." << endl;
 
     cout << "Barkod: " << barkod << endl;
@@ -229,6 +186,7 @@ void Dokument::unosPodataka()
    /* string naziv, string kategorija, string zanr, string* autori, int brojAutora,
                                     string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
                                     int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja*/
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //zbog praznih mjesta
     cout << "Naziv: ";
     getline(cin, naziv); //hvatamo citav string
 
@@ -302,35 +260,6 @@ void Dokument::unosPodataka()
         else break; //prekida se petlja kada unese prazan string
     } //end while
 
-    cout << "Pisma(enter prazno za prekid): ";
-    string pismo;
-    while(true)
-    {
-        getline(cin, pismo);
-
-        if(pismo != "")
-        {
-            if(brojPisama == 0)
-            {
-                dostupnaPisma = new string[brojPisama + 1];
-                dostupnaPisma[brojPisama] = pismo;
-                brojPisama++;
-            }
-            else
-            {
-                string* pomocniNiz = new string[brojPisama + 1];
-                for(int i = 0; i < brojPisama; i++)
-                    pomocniNiz[i] = dostupnaPisma[i];
-
-                delete[] dostupnaPisma;
-                dostupnaPisma = pomocniNiz;
-                dostupnaPisma[brojPisama] = pismo;
-                brojPisama++;
-            }//end if-else unutra
-        }//end if
-
-        else break; //prekida se petlja kada unese prazan string
-    } //end while
 
     cout << "Godina izdanja: ";
     cin >> godinaIzdanja;
@@ -348,8 +277,6 @@ Dokument& Dokument::operator=(const Dokument& d)
         //brisemo sada nizove
     if(brojAutora != 0)
         delete[] autori;
-    if(brojPisama != 0)
-        delete[] dostupnaPisma;
 
     if(brojJezika != 0)
         delete[] dostupniJezici;
@@ -381,19 +308,6 @@ Dokument& Dokument::operator=(const Dokument& d)
         for(int i = 0; i < brojJezika; i++)
         {
             dostupniJezici[i] = d.dostupniJezici[i];
-        }
-    }
-
-
-    brojPisama = d.brojPisama;
-
-    if(brojPisama > 0)
-    {
-        dostupnaPisma = new string[brojPisama];
-
-        for(int i = 0; i < brojPisama; i++)
-        {
-            dostupnaPisma[i] = d.dostupnaPisma[i];
         }
     }
 

@@ -8,11 +8,11 @@ NaucniRad::NaucniRad() : Knjiga() {}
 ///------------------------------------------------------------------------------------------------------------------------
 
 NaucniRad::NaucniRad(string naziv, string kategorija, string* autori, int brojAutora,
-                                     string mjestoIzdanja, int brojPrimjeraka, string* dostupniJezici,
-                                     int brojJezika, string* dostupnaPisma, int brojPisama, int godinaIzdanja,
-                                     int brojStranica, int brojIzdanja, string izdavac, string stampa, string mentor, string oblast)
-                                     : Knjiga(naziv, kategorija, autori, brojAutora, mjestoIzdanja, brojPrimjeraka, dostupniJezici, brojJezika, dostupnaPisma,
-                                                  brojPisama, godinaIzdanja, brojStranica, brojIzdanja, izdavac, stampa)
+                                 string mjestoIzdanja, string* dostupniJezici,
+                                 int brojJezika, int godinaIzdanja,
+                                 int brojStranica, int brojIzdanja, string izdavac, string stampa, string mentor, string oblast)
+                                     : Knjiga(naziv, kategorija, autori, brojAutora, mjestoIzdanja, dostupniJezici, brojJezika,
+                                                  godinaIzdanja, brojStranica, brojIzdanja, izdavac, stampa)
 {
     this->mentor = mentor;
     this->oblast = oblast;
@@ -22,8 +22,8 @@ NaucniRad::NaucniRad(string naziv, string kategorija, string* autori, int brojAu
 
 NaucniRad::NaucniRad(const NaucniRad& nr) : Knjiga(nr)
 {
-    this->mentor = mentor;
-    this->oblast = oblast;
+    this->mentor = nr.mentor;
+    this->oblast = nr.oblast;
 }
 
 ///------------------------------------------------------------------------------------------------------------------------
@@ -46,10 +46,10 @@ void NaucniRad::unosPodataka()
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     cout << "Mentor: ";
-    getline(cin, mentor);
+    getline(cin, this->mentor);
 
     cout << "Oblast: ";
-    getline(cin, oblast);
+    getline(cin, this->oblast);
 }
 
 ///------------------------------------------------------------------------------------------------------------------------
