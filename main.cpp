@@ -1,5 +1,4 @@
-#include "polica.h"
-#include "korisnik.h"
+#include "biblioteka.h"
 
 using namespace std;
 
@@ -7,21 +6,9 @@ using namespace std;
 
 int main()
 {
-    Korisnik ja("Said", "Salihefendic");
-    Dokument* k = new Knjiga();
-//    k->unosPodataka();
+    Biblioteka b(10);
 
-//    cout << endl;
-//    k->ispis();
-
-    ja.dodajKnjigu(k);
-    ja.dodajKnjigu(new NaucniRad());
-    ja.dodajKnjigu(new Fajl());
-    ja.dodajKnjigu(new Fajl());
-    ja.dodajKnjigu(new Fajl());
-
-    ja.ispis();
-
+    b.meni();
 
     return 0;
 }
@@ -102,7 +89,7 @@ int main()
 //    {
 //        cout << "Ne moze se pristupiti!" << endl;
 //    } //end try-catch
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------
 //    Polica pol("proba", 4);
 //
 ////    pol.dodajDokument();
@@ -128,6 +115,32 @@ int main()
 //    {
 //        cout << "Ne moze se pristupiti!" << endl;
 //    } //end
+/
+//    Polica k;
+//
+//    k.dodajDokument(new Fajl());
+//    Dokument* f = k.uzmiDokument(0);
+//
+//    k.ispis();
+//
+//    k.vratiKnjigu(f);
+//
+//    k.ispis();
 
+
+***********TEST 2: KORISNIK****************
+//    Korisnik ja("Said", "Salihefendic");
+//    Dokument* k = new Knjiga();
+////    k->unosPodataka();
+//
+////    cout << endl;
+////    k->ispis();
+//    ja.dodajKnjigu(k);
+//    ja.dodajKnjigu(new NaucniRad());
+//    ja.dodajKnjigu(new Fajl());
+//    ja.dodajKnjigu(new Fajl());
+//    ja.dodajKnjigu(new Fajl());
+//
+//    ja.ispis();
 
 */

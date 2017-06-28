@@ -66,9 +66,8 @@
 1498386005 c:\users\said\desktop\sistem-biblioteke\knjiga.h
 	"dokument.h"
 
-1498585925 source:c:\users\said\desktop\sistem-biblioteke\main.cpp
-	"polica.h"
-	"korisnik.h"
+1498610963 source:c:\users\said\desktop\sistem-biblioteke\main.cpp
+	"biblioteka.h"
 
 1498386473 source:c:\users\said\desktop\sistem-biblioteke\naucnirad.cpp
 	"naucnirad.h"
@@ -77,20 +76,31 @@
 1498386084 c:\users\said\desktop\sistem-biblioteke\naucnirad.h
 	"knjiga.h"
 
-1498436625 source:c:\users\said\desktop\sistem-biblioteke\polica.cpp
+1498616288 source:c:\users\said\desktop\sistem-biblioteke\polica.cpp
 	"polica.h"
 
-1498436858 c:\users\said\desktop\sistem-biblioteke\polica.h
+1498615258 c:\users\said\desktop\sistem-biblioteke\polica.h
 	<string>
 	"dokument.h"
 	"knjiga.h"
 	"fajl.h"
 	"naucnirad.h"
 
-1498585950 source:c:\users\said\desktop\sistem-biblioteke\korisnik.cpp
+1498615940 source:c:\users\said\desktop\sistem-biblioteke\korisnik.cpp
 	"korisnik.h"
 
-1498585736 c:\users\said\desktop\sistem-biblioteke\korisnik.h
+1498615912 c:\users\said\desktop\sistem-biblioteke\korisnik.h
 	<string>
 	"polica.h"
+
+1498617593 source:c:\users\said\desktop\sistem-biblioteke\biblioteka.cpp
+	"biblioteka.h"
+	<cstdlib>
+	<limits>
+
+1498617228 c:\users\said\desktop\sistem-biblioteke\biblioteka.h
+	<iostream>
+	<fstream>
+	"polica.h"
+	"korisnik.h"
 

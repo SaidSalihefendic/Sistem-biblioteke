@@ -9,8 +9,14 @@ Polica::Polica() //Standard - kapacitet 10
     oznaka = "A";
     kapacitet = 10;
     dokumenti = new Dokument*[kapacitet];
+    jePrisutan = new bool[kapacitet];
     brojKnjiga = 0;
     id = PID++;
+
+        //da se zna da li su knjige uzete ili nisu
+    for(int i = 0; i < kapacitet; i++)
+        jePrisutan[i] = true;
+
 }//end constructor
 
 ///*************************************************************************************************************
@@ -61,16 +67,16 @@ Polica::~Polica()
 ///*************************************************************************************************************
 
     //funkcija koja ce dodavati dokument u niz dokumenti, ukoliko je kapacitet pun, ne ubacuje knjigu i ignorise zahtjev
-void Polica::dodajDokument(Dokument& d) //treba pogledati zasto ne zeli const da primi, da li operator & ne garantuje promjenu
+void Polica::dodajDokument(Dokument* d) //treba pogledati zasto ne zeli const da primi, da li operator & ne garantuje promjenu
 {
     if(brojKnjiga != kapacitet)
-        dokumenti[brojKnjiga++] = &d;
+        dokumenti[brojKnjiga++] = d;
 }
 
     //da vrati koliko je jos moguce knjiga staviti na policu
-int Polica::vratiProstor() const
+int Polica::vratiBrojKnjiga() const
 {
-    return kapacitet - brojKnjiga;
+    return brojKnjiga;
 }
 
 ///*************************************************************************************************************
@@ -113,6 +119,11 @@ void Polica::ispis() const
         cout << i + 1<< "." << endl << "--------------------------------" << endl;
         dokumenti[i]->ispis();
         cout << endl;
+
+        if(jePrisutan[i])
+            cout << "Stanje: dostupno" << endl;
+        else
+            cout << "Stanje: nedostupno" << endl;
     }
 
     cout << "--------------------------------" << endl;
@@ -120,7 +131,7 @@ void Polica::ispis() const
 
 ///*************************************************************************************************************
 
-void Polica::dodajDokument()
+void Polica::dodajDokument() throw (char)
 {
     if(brojKnjiga != kapacitet){
         cout << "Koji je tip dokumenta?" << endl;
@@ -129,8 +140,14 @@ void Polica::dodajDokument()
         cout << "3. Naucni rad" << endl;
         cout << endl;
         int odluka;
-        cout << "Unos: ";
-        cin >> odluka;
+        cout << "Unos (-1 za izlaz): ";
+
+        do
+        {
+            cin >> odluka;
+            if(odluka == -1) return;
+
+        }while(odluka <= 0 || odluka > 3);
 
 
         switch(odluka)
@@ -146,6 +163,7 @@ void Polica::dodajDokument()
         dokumenti[brojKnjiga - 1]->unosPodataka();
         cout << "--------------------------------------------------------------------------" << endl;
     }//end if
+    else throw 't'; //baca izuzetak ukoliko je puna polica
 }//end dodajDokument
 
 ///*************************************************************************************************************
@@ -158,6 +176,7 @@ Dokument* Polica::operator[](int index) throw (char)
  } //end [] operator
 
  ///*************************************************************************************************************
+
     //vraca pokazivac na dokument koji mi zelimo da uzmemo iz police, a polica se azurira i smanjuje broj knjiga za 1
  Dokument* Polica::izbaciDokument(int index) throw (char)
  {
@@ -174,5 +193,56 @@ Dokument* Polica::operator[](int index) throw (char)
 
     return pom;
  } //end izbaciDokument
+
+ ///*************************************************************************************************************
+
+ Dokument* Polica::uzmiDokument(int index) throw (char)
+ {
+     if(index < 0 || index >= brojKnjiga) throw 'c';
+     else if(!jePrisutan[index]) throw 'd'; //ukoliko je vec zauzeta knjiga
+
+     jePrisutan[index] = false; //uzeli smo sada ovu knjigu
+
+     return dokumenti[index]; //vracamo pokazivac na dokument
+ }
+
+ ///*************************************************************************************************************
+
+ void Polica::vratiKnjigu(Dokument* d) //vracamo sada knjigu na policu
+ {
+     for(int i = 0; i < brojKnjiga; i++)
+     {
+         if(d == dokumenti[i])
+            jePrisutan[i] = true;
+     }
+ }
+
+ ///*************************************************************************************************************
+
+ string Polica::vratiOznaku() const
+ {
+    string a = "";
+
+    a += this->oznaka;
+    int pom = id;
+
+
+    if(pom == 0)
+    {
+        a += (char)(pom + '0');
+        return a;
+    }
+    string stringpom = "";
+    //uzimamo cifre iz pomocne varijable i stavljamo u string (moglo je i sa sstream)
+    while(pom > 0)
+    {
+        stringpom = (char)(pom % 10 + (int)('0')) + stringpom;
+        pom /= 10;
+    }//end while
+
+    a += stringpom;
+
+    return a;
+ }
 
  ///*************************************************************************************************************

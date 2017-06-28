@@ -5,6 +5,17 @@ int Korisnik::ID = 0;
 
 /********************************************************************************************************/
 
+Korisnik::Korisnik()
+{
+    ime = "";
+    prezime = "";
+    trenutniBrojKnjiga = 0;
+    preuzeteKnjige = new Dokument*[5];
+    brojClanske = ID;
+}
+
+/********************************************************************************************************/
+
 Korisnik::Korisnik(string ime, string prezime)
 {
     this->ime = ime;
@@ -103,4 +114,36 @@ void Korisnik::ispis() const
         preuzeteKnjige[i]->ispis();
         cout << endl << "------------------------------------------------------------------" << endl;
     } //end for
+}
+
+/********************************************************************************************************/
+
+Dokument* Korisnik::operator[](int index) throw (char)
+{
+    if(index < 0 || index >= this->trenutniBrojKnjiga) throw 'a';
+
+    return preuzeteKnjige[index];
+}
+
+/********************************************************************************************************/
+
+int Korisnik::vratiClansku() const
+{
+    return brojClanske;
+}
+
+/********************************************************************************************************/
+
+int Korisnik::vratiTrenutniBrojKnjiga() const
+{
+    return trenutniBrojKnjiga;
+}
+
+/********************************************************************************************************/
+
+/********************************************************************************************************/
+string Korisnik::vratiIdentitet() const
+{
+    string identitet = ime + " " + prezime;
+    return identitet;
 }
